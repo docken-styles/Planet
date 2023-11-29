@@ -1,27 +1,45 @@
-<main>
-  <h1>Sample Juno App</h1>
+<header>
+    <img src="assets/planet-logo.png" alt="Planet Logo" class="logo">
+    <div class="header-content">
+        <h2 class="header-title">Plan it. Plant it. For the Planet.</h2>
+        <ng-container *ngIf="signedIn(); else notSignedIn">
+            <button class="custom-button" (click)="signOut()">Sign-out</button>
+        </ng-container>
+        <ng-template #notSignedIn>
+            <button class="custom-button" (click)="signIn()">
+                Sign-in
+            </button>
+        </ng-template>
+    </div>
+</header>
+<!-- <main> -->
+<!--     <section style="padding: 20px;"> -->
+<!--         <h2>Sample Juno App</h2> -->
 
-  <p>
-    A sample app build with Angular and
-    <a href="https://juno.build" rel="noopener noreferrer" target="_blank">
-      Juno
-    </a>
-    .
-  </p>
+<!--         <p> -->
+<!--             A sample app built with Angular and -->
+<!--             <a href="https://juno.build" rel="noopener noreferrer" target="_blank"> -->
+<!--               Juno -->
+<!--             </a>. -->
+<!--         </p> -->
 
-  <ng-container *ngIf="signedIn(); else notSignedIn">
-    <app-table />
+<!--         <ng-container *ngIf="signedIn(); else notSignedIn"> -->
+<!--             <app-table /> -->
 
-    <button mat-raised-button color="primary" (click)="openModal()">
-      Add an entry
-    </button>
+<!--             <button class="custom-button" (click)="openModal()"> -->
+<!--                 Add an entry -->
+<!--             </button> -->
 
-    <button mat-raised-button (click)="signOut()">Sign-out</button>
-  </ng-container>
+<!--             <button class="custom-button" (click)="signOut()">Sign-out</button> -->
+<!--         </ng-container> -->
 
-  <ng-template #notSignedIn>
-    <button mat-raised-button color="primary" (click)="signIn()">
-      Sign-in
-    </button>
-  </ng-template>
-</main>
+<!--         <ng-template #notSignedIn> -->
+<!--             <div class="centered-content"> -->
+<!--                 <button class="custom-button" (click)="signIn()"> -->
+<!--                     Sign-in -->
+<!--                 </button> -->
+<!--             </div> -->
+<!--         </ng-template> -->
+<!--     </section> -->
+<!-- </main> -->
+

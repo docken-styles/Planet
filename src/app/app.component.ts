@@ -11,7 +11,7 @@ import { initJuno } from "@junobuild/core";
   standalone: true,
 })
 export class AppComponent implements OnInit {
-  title = 'diary';
+  title = 'Planet';
 
   async ngOnInit() {
     // TODO: STEP_1_INITIALIZATION

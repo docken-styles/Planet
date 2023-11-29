@@ -1,12 +1,43 @@
-main {
-  padding: 1rem;
+header {
+    background-color: #50723C; // Adjust color as needed
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
-button {
-  display: block;
-  margin: 0 0 1rem;
-
-  &:first-of-type {
-    margin-top: 2rem;
-  }
+.logo {
+    max-width: 100px; // Adjust size as needed
+    height: auto;
 }
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-size: 20px;
+    margin: 0; // Remove default margin
+    flex-grow: 1;
+    text-align: center;
+}
+
+.custom-button {
+    background-color: #76b852;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #5c8b3c;
+}
+
