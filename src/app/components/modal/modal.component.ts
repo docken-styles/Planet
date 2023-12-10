@@ -71,12 +71,12 @@ export class ModalComponent {
       const filename = `${user.key}-${this.file.name}`;
 
       // TODO: STEP_7_UPLOAD_FILE
-      const downloadUrl = undefined;
-      // const { downloadUrl } = await uploadFile({
-      //   collection: 'images',
-      //   data: this.file,
-      //   filename,
-      // });
+      // const downloadUrl = undefined;
+      const { downloadUrl } = await uploadFile({
+        collection: 'images',
+        data: this.file,
+        filename,
+      });
 
       url = downloadUrl;
     }
@@ -84,15 +84,15 @@ export class ModalComponent {
     const key = nanoid();
 
     // TODO: STEP_5_SET_DOC
-    // await setDoc({
-    //   collection: 'notes',
-    //   doc: {
-    //     key,
-    //     data: {
-    //       text: this.diaryForm.value.entry,
-    //     },
-    //   },
-    // });
+    await setDoc({
+      collection: 'notes',
+      doc: {
+        key,
+        data: {
+          text: this.diaryForm.value.entry,
+        },
+      },
+    });
 
     // TODO: STEP_8_ADD_REFERENCE
     // ...(url !== undefined && { url }),

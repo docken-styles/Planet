@@ -12,34 +12,17 @@
         </ng-template>
     </div>
 </header>
-<!-- <main> -->
-<!--     <section style="padding: 20px;"> -->
-<!--         <h2>Sample Juno App</h2> -->
+<main>
+    <section style="padding: 20px;">
+        <!-- Uncomment and add content as needed -->
 
-<!--         <p> -->
-<!--             A sample app built with Angular and -->
-<!--             <a href="https://juno.build" rel="noopener noreferrer" target="_blank"> -->
-<!--               Juno -->
-<!--             </a>. -->
-<!--         </p> -->
+        <ng-container *ngIf="signedIn()">
+            <app-table />
 
-<!--         <ng-container *ngIf="signedIn(); else notSignedIn"> -->
-<!--             <app-table /> -->
-
-<!--             <button class="custom-button" (click)="openModal()"> -->
-<!--                 Add an entry -->
-<!--             </button> -->
-
-<!--             <button class="custom-button" (click)="signOut()">Sign-out</button> -->
-<!--         </ng-container> -->
-
-<!--         <ng-template #notSignedIn> -->
-<!--             <div class="centered-content"> -->
-<!--                 <button class="custom-button" (click)="signIn()"> -->
-<!--                     Sign-in -->
-<!--                 </button> -->
-<!--             </div> -->
-<!--         </ng-template> -->
-<!--     </section> -->
-<!-- </main> -->
+            <button class="custom-button" (click)="openModal()">
+                Add an entry
+            </button>
+        </ng-container>
+    </section>
+</main>
 

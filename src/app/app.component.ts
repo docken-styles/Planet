@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { initJuno } from "@junobuild/core";
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     // TODO: STEP_1_INITIALIZATION
     await initJuno({
-      satelliteId: 'tiprb-oiaaa-aaaal-acywq-cai'
+      satelliteId: environment.satelliteId
     })
   }
 }
