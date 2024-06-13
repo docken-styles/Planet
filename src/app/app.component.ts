@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { initJuno } from "@junobuild/core";
 import { environment } from 'src/environments/environments';
-// import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [HomeComponent, RouterModule],
+  imports: [HomeComponent, RouterModule, HttpClientModule],  // Ensure HttpClientModule is here
   standalone: true,
 })
 export class AppComponent implements OnInit {
@@ -25,3 +25,4 @@ export class AppComponent implements OnInit {
     }
   }
 }
+

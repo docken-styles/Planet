@@ -14,15 +14,24 @@
 </header>
 <main>
     <section style="padding: 20px;">
-        <!-- Uncomment and add content as needed -->
-
+        <!-- Existing functionality -->
         <ng-container *ngIf="signedIn()">
             <app-table />
-
             <button class="custom-button" (click)="openModal()">
                 Add an entry
             </button>
         </ng-container>
+    </section>
+    <section style="padding: 20px;">
+        <!-- New notification section -->
+        <h1>Notifications</h1>
+        <ul>
+            <li *ngFor="let notification of notifications">
+                {{ notification.title }} - {{ notification.message }}
+                <button class="custom-button" (click)="deleteNotification(notification.id)">Delete</button>
+            </li>
+        </ul>
+        <button class="custom-button" (click)="createNotification()">Create Notification</button>
     </section>
 </main>
 
