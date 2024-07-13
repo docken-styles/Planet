@@ -14,24 +14,41 @@
 </header>
 <main>
     <section style="padding: 20px;">
-        <!-- Existing functionality -->
         <ng-container *ngIf="signedIn()">
             <app-table />
+
             <button class="custom-button" (click)="openModal()">
                 Add an entry
             </button>
+
+            <!-- Notification Form -->
+            <form [formGroup]="notificationForm" (ngSubmit)="createNotification()">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Message</mat-label>
+                    <input matInput formControlName="message">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Time</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="time">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <button mat-raised-button type="submit">Create Notification</button>
+            </form>
+
+            <!-- Notifications List -->
+            <ul>
+                <li *ngFor="let notification of notifications">
+                    <strong>{{ notification.title }}</strong> - {{ notification.message }} at {{ notification.time }}
+                    <button (click)="editNotification(notification)">Edit</button>
+                    <button (click)="deleteNotification(notification.id)">Delete</button>
+                </li>
+            </ul>
         </ng-container>
-    </section>
-    <section style="padding: 20px;">
-        <!-- New notification section -->
-        <h1>Notifications</h1>
-        <ul>
-            <li *ngFor="let notification of notifications">
-                {{ notification.title }} - {{ notification.message }}
-                <button class="custom-button" (click)="deleteNotification(notification.id)">Delete</button>
-            </li>
-        </ul>
-        <button class="custom-button" (click)="createNotification()">Create Notification</button>
     </section>
 </main>
 

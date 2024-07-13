@@ -18,6 +18,10 @@ export class NotificationService {
     return this.http.post(this.apiUrl, notification);
   }
 
+   updateNotification(id: number, notification: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, notification);
+  }
+
   deleteNotification(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
