@@ -8,6 +8,8 @@ from flask_migrate import Migrate
 from datetime import datetime
 from dateutil.parser import parse as parse_date
 from celery import Celery  # Ensure Celery is imported
+import google_calendar
+from datetime import timedelta
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})  # Configure CORS
@@ -90,7 +92,12 @@ def schedule_notification(notification_id):
     notification = Notification.query.get(notification_id)
     if notification:
         print(f"Notification triggered: {notification.title} - {notification.message}")
-
+        google_calendar.create_event(
+            notification.title,
+            notification.message,
+            notification.time,
+            notification.time + timedelta(hours=1)
+        )
 if __name__ == '__main__':
     app.run(debug=True)
 
