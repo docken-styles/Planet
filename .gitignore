@@ -1,1 +1,19 @@
 src/app/credentials.json
+# Ignore Angular build and config files
+.angular/
+
+# Ignore node modules
+node_modules/
+
+# Ignore Python bytecode and cache files
+src/app/__pycache__/
+*.pyc
+
+# Ignore environment variable files
+.env
+src/environments/
+
+# Ignore temporary app.py files
+src/app/app.py_google
+src/app/app.py_saved
+
