@@ -10,11 +10,20 @@ from dateutil.parser import parse as parse_date
 from celery import Celery  # Ensure Celery is imported
 import google_calendar
 from datetime import timedelta
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})  # Configure CORS
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mdocken:%40tTTFJ%23g3Pla@localhost/planet'
+# Configurations
+database_uri = os.getenv('DATABASE_URI')
+if not database_uri:
+    raise ValueError("No DATABASE_URI set for Flask application. Did you follow the setup instructions?")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 app.config.update(
     broker_url='redis://localhost:6379/0',
     result_backend='redis://localhost:6379/0',
@@ -84,6 +93,19 @@ def update_notification(id):
         db.session.commit()
 
         return jsonify({'message': 'Notification updated'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/notifications/<int:id>', methods=['DELETE'])
+def delete_notification(id):
+    try:
+        notification = Notification.query.get(id)
+        if not notification:
+            return jsonify({'message': 'Notification not found'}), 404
+
+        db.session.delete(notification)
+        db.session.commit()
+        return jsonify({'message': 'Notification deleted'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

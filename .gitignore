@@ -17,3 +17,5 @@ src/environments/
 src/app/app.py_google
 src/app/app.py_saved
 
+# Ignore secrets/tokens/authid
+src/app/secrets
