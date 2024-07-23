@@ -94,7 +94,9 @@ export class HomeComponent implements OnInit {
         message: this.notificationForm.value.message,
         time: this.notificationForm.value.time
       };
+      console.log('Creating new notification:', newNotification); // Added logging
       this.notificationService.createNotification(newNotification).subscribe((notification: any) => {
+        console.log('Notification created successfully:', notification); // Added logging
         this.notifications.push(notification);
         this.notificationForm.reset();  // Reset the form
         this.loadNotifications();  // Reload notifications to reflect the newly created one
@@ -109,7 +111,7 @@ export class HomeComponent implements OnInit {
     this.notificationForm.patchValue(notification);
   }
 
-  deleteNotification(id: string): void {
+  deleteNotification(id: number): void {  // Ensure id is of type number
     this.notificationService.deleteNotification(id).subscribe(() => {
       this.notifications = this.notifications.filter(notification => notification.id !== id);
       this.loadNotifications();  // Reload notifications after deletion

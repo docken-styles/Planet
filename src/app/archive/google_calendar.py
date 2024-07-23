@@ -1,5 +1,6 @@
+# src/app/google_calendar.py
 import os
-import datetime
+import logging
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -37,6 +38,6 @@ def create_event(summary, description, start_time, end_time):
         },
     }
     event = service.events().insert(calendarId='primary', body=event).execute()
-    print('Event created: %s' % (event.get('htmlLink')))
+    logging.info(f'Event created: {event.get("htmlLink")}')
     return event
 

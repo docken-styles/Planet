@@ -6,24 +6,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationService {
-  private apiUrl = 'http://localhost:5000/api/notifications';
+
+  private baseUrl = 'http://localhost:5000/api/notifications';
 
   constructor(private http: HttpClient) { }
 
-  getNotifications(): Observable<any> {
-    return this.http.get(this.apiUrl);
-  }
-
   createNotification(notification: any): Observable<any> {
-    return this.http.post(this.apiUrl, notification);
+    return this.http.post<any>(this.baseUrl, notification);
   }
 
-   updateNotification(id: number, notification: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, notification);
+  getNotifications(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
   }
 
-  deleteNotification(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  updateNotification(id: number, notification: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, notification);
+  }
+
+  deleteNotification(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
 }
 
