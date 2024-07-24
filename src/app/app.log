@@ -380,3 +380,111 @@ LINE 1: INSERT INTO notification (title, message, time, event_id) VA...
 2024-07-22 22:48:20,867 INFO: Deleted Google Calendar event with ID: 4ohmunnv2srn60b5tlrjuq2tlg
 2024-07-22 22:48:20,868 INFO: 127.0.0.1 - - [22/Jul/2024 22:48:20] "DELETE /api/notifications/51 HTTP/1.1" 200 -
 2024-07-22 22:48:20,875 INFO: 127.0.0.1 - - [22/Jul/2024 22:48:20] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:38:09,240 WARNING:  * Debugger is active!
+2024-07-23 21:38:09,240 INFO:  * Debugger PIN: 199-800-662
+2024-07-23 21:38:51,442 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:51] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:38:53,613 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:53] "OPTIONS /api/notifications/65 HTTP/1.1" 200 -
+2024-07-23 21:38:53,942 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:53] "DELETE /api/notifications/65 HTTP/1.1" 200 -
+2024-07-23 21:38:54,173 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:54] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:38:58,413 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:58] "OPTIONS /api/notifications/64 HTTP/1.1" 200 -
+2024-07-23 21:38:58,742 INFO: file_cache is only supported with oauth2client<4.0.0
+2024-07-23 21:38:59,308 INFO: Event deleted: quudljac1h962lohh8k9b83gu8
+2024-07-23 21:38:59,309 INFO: Deleted Google Calendar event with ID: quudljac1h962lohh8k9b83gu8
+2024-07-23 21:38:59,312 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:59] "DELETE /api/notifications/64 HTTP/1.1" 200 -
+2024-07-23 21:38:59,319 INFO: 127.0.0.1 - - [23/Jul/2024 21:38:59] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:39:00,066 INFO: 127.0.0.1 - - [23/Jul/2024 21:39:00] "OPTIONS /api/notifications/63 HTTP/1.1" 200 -
+2024-07-23 21:39:00,322 INFO: file_cache is only supported with oauth2client<4.0.0
+2024-07-23 21:39:00,752 INFO: Event deleted: vl3imkq7nellissq2ji65p1d3o
+2024-07-23 21:39:00,752 INFO: Deleted Google Calendar event with ID: vl3imkq7nellissq2ji65p1d3o
+2024-07-23 21:39:00,753 INFO: 127.0.0.1 - - [23/Jul/2024 21:39:00] "DELETE /api/notifications/63 HTTP/1.1" 200 -
+2024-07-23 21:39:00,764 INFO: 127.0.0.1 - - [23/Jul/2024 21:39:00] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:39:11,736 INFO: 127.0.0.1 - - [23/Jul/2024 21:39:11] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:39:11,973 ERROR: Error creating notification: 'phone_number'
+2024-07-23 21:39:11,974 INFO: 127.0.0.1 - - [23/Jul/2024 21:39:11] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 500 -
+2024-07-23 21:41:29,864 INFO:  * Detected change in '/home/mdocken/Planet/src/app/app.py', reloading
+2024-07-23 21:41:30,402 WARNING:  * Debugger is active!
+2024-07-23 21:41:30,403 INFO:  * Debugger PIN: 199-800-662
+2024-07-23 21:41:38,947 INFO: 127.0.0.1 - - [23/Jul/2024 21:41:38] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:41:39,221 INFO: Creating notification with ID: 66 at 2024-07-23 04:00:00+00:00
+2024-07-23 21:41:39,223 INFO: file_cache is only supported with oauth2client<4.0.0
+2024-07-23 21:41:40,000 INFO: Event created: https://www.google.com/calendar/event?eid=cmMxOTZjdDk1cWV1am40dHNzaHE0MHU3cDQgZGVyd3lubWRvY2tlbmpyQG0
+2024-07-23 21:41:40,006 INFO: Google Calendar event created for notification ID: 66
+2024-07-23 21:41:40,006 INFO: Scheduling SMS task for time: 2024-07-23 04:00:00+00:00
+2024-07-23 21:41:40,048 INFO: Scheduled SMS task ID: d8512e94-9cce-4ce0-8619-e61ef282112a
+2024-07-23 21:41:40,050 INFO: 127.0.0.1 - - [23/Jul/2024 21:41:40] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 201 -
+2024-07-23 21:41:40,058 INFO: 127.0.0.1 - - [23/Jul/2024 21:41:40] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:45:59,863 INFO: 127.0.0.1 - - [23/Jul/2024 21:45:59] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:50:41,664 INFO: 127.0.0.1 - - [23/Jul/2024 21:50:41] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:50:43,912 INFO: 127.0.0.1 - - [23/Jul/2024 21:50:43] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:52:36,999 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-23 21:52:36,999 INFO: [33mPress CTRL+C to quit[0m
+2024-07-23 21:52:37,000 INFO:  * Restarting with stat
+2024-07-23 21:52:37,485 WARNING:  * Debugger is active!
+2024-07-23 21:52:37,485 INFO:  * Debugger PIN: 199-800-662
+2024-07-23 21:52:42,392 INFO: 127.0.0.1 - - [23/Jul/2024 21:52:42] "OPTIONS /api/notifications/66 HTTP/1.1" 200 -
+2024-07-23 21:52:42,915 INFO: file_cache is only supported with oauth2client<4.0.0
+2024-07-23 21:52:43,369 INFO: Event deleted: rc196ct95qeujn4tsshq40u7p4
+2024-07-23 21:52:43,369 INFO: Deleted Google Calendar event with ID: rc196ct95qeujn4tsshq40u7p4
+2024-07-23 21:52:43,370 INFO: 127.0.0.1 - - [23/Jul/2024 21:52:43] "DELETE /api/notifications/66 HTTP/1.1" 200 -
+2024-07-23 21:52:43,378 INFO: 127.0.0.1 - - [23/Jul/2024 21:52:43] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:52:45,651 INFO: 127.0.0.1 - - [23/Jul/2024 21:52:45] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:53:23,363 INFO: 127.0.0.1 - - [23/Jul/2024 21:53:23] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:55:06,843 INFO: 127.0.0.1 - - [23/Jul/2024 21:55:06] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 21:55:36,916 INFO:  * Detected change in '/home/mdocken/Planet/src/app/app.py', reloading
+2024-07-23 21:55:37,043 INFO:  * Restarting with stat
+2024-07-23 21:55:37,483 WARNING:  * Debugger is active!
+2024-07-23 21:55:37,484 INFO:  * Debugger PIN: 199-800-662
+2024-07-23 21:55:41,403 INFO: 127.0.0.1 - - [23/Jul/2024 21:55:41] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:05:17,538 INFO: 127.0.0.1 - - [23/Jul/2024 22:05:17] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:05:21,829 INFO: 127.0.0.1 - - [23/Jul/2024 22:05:21] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:08:05,711 INFO: 127.0.0.1 - - [23/Jul/2024 22:08:05] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:12:03,004 INFO: 127.0.0.1 - - [23/Jul/2024 22:12:03] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:16:38,470 INFO: 127.0.0.1 - - [23/Jul/2024 22:16:38] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:22:56,184 INFO: 127.0.0.1 - - [23/Jul/2024 22:22:56] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:23:09,698 INFO: 127.0.0.1 - - [23/Jul/2024 22:23:09] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:23:10,014 ERROR: Error creating notification: year 0 is out of range: 0000-01-01T22:25:00.000-04:56
+2024-07-23 22:23:10,015 INFO: 127.0.0.1 - - [23/Jul/2024 22:23:10] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 500 -
+2024-07-23 22:28:12,232 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-23 22:28:12,232 INFO: [33mPress CTRL+C to quit[0m
+2024-07-23 22:28:12,233 INFO:  * Restarting with stat
+2024-07-23 22:28:12,641 WARNING:  * Debugger is active!
+2024-07-23 22:28:12,642 INFO:  * Debugger PIN: 199-800-662
+2024-07-23 22:28:24,890 INFO: 127.0.0.1 - - [23/Jul/2024 22:28:24] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:28:34,017 INFO: 127.0.0.1 - - [23/Jul/2024 22:28:34] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:28:34,326 ERROR: Error creating notification: year 0 is out of range: 0000-01-01T22:30:00.000-04:56
+2024-07-23 22:28:34,326 INFO: 127.0.0.1 - - [23/Jul/2024 22:28:34] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 500 -
+2024-07-23 22:30:16,174 INFO: 127.0.0.1 - - [23/Jul/2024 22:30:16] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:31:49,958 INFO: 127.0.0.1 - - [23/Jul/2024 22:31:49] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:32:06,671 INFO: 127.0.0.1 - - [23/Jul/2024 22:32:06] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:32:06,986 ERROR: Error creating notification: year 0 is out of range: 0000-01-01T22:53:58.000-04:56
+2024-07-23 22:32:06,987 INFO: 127.0.0.1 - - [23/Jul/2024 22:32:06] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 500 -
+2024-07-23 22:35:31,674 INFO: 127.0.0.1 - - [23/Jul/2024 22:35:31] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:35:43,125 INFO: 127.0.0.1 - - [23/Jul/2024 22:35:43] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:35:43,440 ERROR: Error creating notification: year 0 is out of range: 0000-01-01T22:37:00.000-04:56
+2024-07-23 22:35:43,440 INFO: 127.0.0.1 - - [23/Jul/2024 22:35:43] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 500 -
+2024-07-23 22:38:18,252 INFO: 127.0.0.1 - - [23/Jul/2024 22:38:18] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:40:07,952 INFO: 127.0.0.1 - - [23/Jul/2024 22:40:07] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:43:24,777 INFO: 127.0.0.1 - - [23/Jul/2024 22:43:24] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:45:27,743 INFO: 127.0.0.1 - - [23/Jul/2024 22:45:27] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:48:59,270 INFO: 127.0.0.1 - - [23/Jul/2024 22:48:59] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:53:37,331 INFO: 127.0.0.1 - - [23/Jul/2024 22:53:37] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:53:47,187 INFO: 127.0.0.1 - - [23/Jul/2024 22:53:47] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 22:54:03,981 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-23 22:54:03,981 INFO: [33mPress CTRL+C to quit[0m
+2024-07-23 22:54:03,982 INFO:  * Restarting with stat
+2024-07-23 22:54:04,499 WARNING:  * Debugger is active!
+2024-07-23 22:54:04,500 INFO:  * Debugger PIN: 199-800-662
+2024-07-23 22:54:18,795 INFO: 127.0.0.1 - - [23/Jul/2024 22:54:18] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 23:03:36,814 INFO: 127.0.0.1 - - [23/Jul/2024 23:03:36] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 23:03:47,965 INFO: 127.0.0.1 - - [23/Jul/2024 23:03:47] "OPTIONS /api/notifications HTTP/1.1" 200 -
+2024-07-23 23:03:48,329 INFO: Creating notification with ID: 67 at 2024-07-23 23:05:00-04:00
+2024-07-23 23:03:48,580 INFO: file_cache is only supported with oauth2client<4.0.0
+2024-07-23 23:03:49,016 INFO: Event created: https://www.google.com/calendar/event?eid=aXY5dGNwZnEzamNtZGNtcDIzbmpwb2FzcW8gZGVyd3lubWRvY2tlbmpyQG0
+2024-07-23 23:03:49,026 INFO: Google Calendar event created for notification ID: 67
+2024-07-23 23:03:49,026 INFO: Scheduling SMS task for time: 2024-07-23 23:05:00-04:00
+2024-07-23 23:03:49,062 INFO: Scheduled SMS task ID: 2a465eb1-bafe-4779-a14d-08d161b9caf7
+2024-07-23 23:03:49,063 INFO: 127.0.0.1 - - [23/Jul/2024 23:03:49] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 201 -
+2024-07-23 23:03:49,074 INFO: 127.0.0.1 - - [23/Jul/2024 23:03:49] "GET /api/notifications HTTP/1.1" 200 -
