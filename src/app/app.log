@@ -488,3 +488,8 @@ LINE 1: INSERT INTO notification (title, message, time, event_id) VA...
 2024-07-23 23:03:49,062 INFO: Scheduled SMS task ID: 2a465eb1-bafe-4779-a14d-08d161b9caf7
 2024-07-23 23:03:49,063 INFO: 127.0.0.1 - - [23/Jul/2024 23:03:49] "[35m[1mPOST /api/notifications HTTP/1.1[0m" 201 -
 2024-07-23 23:03:49,074 INFO: 127.0.0.1 - - [23/Jul/2024 23:03:49] "GET /api/notifications HTTP/1.1" 200 -
+2024-07-23 23:11:15,896 INFO: 127.0.0.1 - - [23/Jul/2024 23:11:15] "OPTIONS /api/notifications/67 HTTP/1.1" 200 -
+2024-07-23 23:11:16,164 INFO: file_cache is only supported with oauth2client<4.0.0
+2024-07-23 23:11:17,090 INFO: Event updated: https://www.google.com/calendar/event?eid=aXY5dGNwZnEzamNtZGNtcDIzbmpwb2FzcW8gZGVyd3lubWRvY2tlbmpyQG0
+2024-07-23 23:11:17,106 INFO: 127.0.0.1 - - [23/Jul/2024 23:11:17] "PUT /api/notifications/67 HTTP/1.1" 200 -
+2024-07-23 23:11:17,114 INFO: 127.0.0.1 - - [23/Jul/2024 23:11:17] "GET /api/notifications HTTP/1.1" 200 -

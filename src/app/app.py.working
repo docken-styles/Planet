@@ -14,6 +14,7 @@ from google.auth.transport.requests import Request
 from dotenv import load_dotenv
 import logging
 import plivo
+import pytz
 
 load_dotenv()
 
@@ -73,7 +74,7 @@ def create_notification():
         data = request.get_json()
         title = data['title']
         message = data['message']
-        time = parse_date(data['time'])
+        time = parse_date(data['time']).astimezone(pytz.timezone('America/New_York'))
         phone_number = "+12263399067"
 
         new_notification = Notification(title=title, message=message, time=time)
@@ -130,7 +131,7 @@ def update_notification(id):
         data = request.get_json()
         notification.title = data['title']
         notification.message = data['message']
-        notification.time = parse_date(data['time'])
+        notification.time = parse_date(data['time']).astimezone(pytz.timezone('America/New_York'))
         
         # Update the event in Google Calendar
         if notification.event_id:

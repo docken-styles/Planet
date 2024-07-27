@@ -1,0 +1,12 @@
+<div [formGroup]="plantSearchForm">
+  <mat-form-field>
+    <mat-label>Search Plants</mat-label>
+    <input matInput formControlName="query" placeholder="Enter plant name">
+  </mat-form-field>
+  <mat-list>
+    <mat-list-item *ngFor="let plant of searchResults" (click)="selectPlant(plant)">
+      {{ plant.name }}
+    </mat-list-item>
+  </mat-list>
+</div>
+
