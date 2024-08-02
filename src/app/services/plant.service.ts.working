@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlantService {
-  // Update the API URL to point to your local Flask server
-  private apiUrl = 'http://localhost:5000/api/plants'; // Flask API for plant search
+  private apiUrl = 'http://localhost:8080/https://trefle.io/api/v1/plants'; // Include CORS Anywhere
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +16,11 @@ export class PlantService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+    const params = new HttpParams()
+      .set('token', environment.trefleApiToken)
+      .set('filter[common_name]', query);
 
-    return this.http.get<any>(`${this.apiUrl}?query=${query}`, { headers }).pipe(
+    return this.http.get<any>(this.apiUrl, { headers, params }).pipe(
       map(response => response.data), // Adjusting to access the 'data' array in the response
       catchError(error => {
         console.error('API Error:', error);

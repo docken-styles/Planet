@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 import logging
 import plivo
 import pytz
+import psycopg2
 
 load_dotenv()
 
@@ -185,6 +186,45 @@ def oauth2callback():
 @app.route('/')
 def index():
     return jsonify({'message': 'Welcome to the Flask app with Celery and Google Calendar integration!'})
+
+
+@app.route('/api/plants', methods=['GET'])
+def get_plants():
+    try:
+        # Fetch the password from the environment variable
+        db_password = os.getenv('DATABASE_PASSWORD')
+        logging.info(f"Connecting to database with user mdocken")
+
+        # Use the password in the connection string
+        conn = psycopg2.connect(dbname="planet", user="mdocken", password="tTTFJg3Pla", host="localhost")
+        cur = conn.cursor()
+
+        query = request.args.get('query', '').lower()
+        logging.info(f"Search query received: {query}")
+
+        # Execute the SQL query with the search filter
+        cur.execute("SELECT * FROM vegetable_maturity WHERE LOWER(vegetable) LIKE %s;", (f"%{query}%",))
+        rows = cur.fetchall()
+        logging.info(f"Query executed successfully, rows fetched: {len(rows)}")
+
+        plant_list = []
+        for row in rows:
+            plant = {
+                "vegetable": row[0],
+                "transplant_weeks": row[1],
+                "days_to_maturity": row[2]
+            }
+            plant_list.append(plant)
+
+        cur.close()
+        conn.close()
+
+        return jsonify({"data": plant_list})
+
+    except Exception as e:
+        logging.error(f"Error processing plant search: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
 
 # Celery tasks
 @celery.task(name='app.schedule_notification')

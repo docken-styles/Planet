@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 import logging
 import plivo
 import pytz
+import psycopg2
 
 load_dotenv()
 
@@ -185,6 +186,37 @@ def oauth2callback():
 @app.route('/')
 def index():
     return jsonify({'message': 'Welcome to the Flask app with Celery and Google Calendar integration!'})
+
+@app.route('/api/plants', methods=['GET'])
+def get_plants():
+    try:
+        # Fetch the password from the environment variable
+        db_password = os.getenv('DATABASE_PASSWORD')
+        
+        # Use the password in the connection string
+        conn = psycopg2.connect(dbname="planet", user="mdocken", password=db_password, host="localhost")
+        cur = conn.cursor()
+
+        query = "SELECT * FROM vegetable_maturity;"
+        cur.execute(query)
+        rows = cur.fetchall()
+
+        plant_list = []
+        for row in rows:
+            plant = {
+                "vegetable": row[0],
+                "transplant_weeks": row[1],
+                "days_to_maturity": row[2]
+            }
+            plant_list.append(plant)
+
+        cur.close()
+        conn.close()
+
+        return jsonify(plant_list)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Celery tasks
 @celery.task(name='app.schedule_notification')

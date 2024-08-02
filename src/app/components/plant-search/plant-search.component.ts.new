@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { PlantService } from '../../services/plant.service'; // Import the new service
 import { tap, switchMap } from 'rxjs/operators';
-import { PlantService } from '../../services/plant.service'; // Use the correct service
 
 @Component({
   selector: 'app-plant-search',
   templateUrl: './plant-search.component.html',
   styleUrls: ['./plant-search.component.scss'],
-  standalone: true, // Mark this component as standalone
+  standalone: true,
 })
 export class PlantSearchComponent implements OnInit {
   plantSearchForm: FormGroup;
-  searchResults$: Observable<any[]> = new Observable<any[]>(); // Initialize directly
+  searchResults$: Observable<any[]>;
 
-  constructor(private fb: FormBuilder, private plantService: PlantService) { // Use PlantService here
+  constructor(private fb: FormBuilder, private plantSearchService: PlantService) {
     this.plantSearchForm = this.fb.group({
       query: ['']
     });
@@ -23,7 +23,7 @@ export class PlantSearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchResults$ = this.plantSearchForm.get('query')!.valueChanges.pipe(
       tap(query => console.log('Search query:', query)),
-      switchMap(query => this.plantService.searchPlants(query))
+      switchMap(query => this.plantService.searchPlants(query)) // Use the new service
     );
   }
 

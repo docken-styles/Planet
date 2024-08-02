@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { initJuno } from "@junobuild/core";
-import { environment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators'; // Import tap and switchMap
 import { PlantService } from '../../services/plant.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +17,7 @@ import { MatListModule } from '@angular/material/list';
 })
 export class PlantSearchComponent implements OnInit {
   plantSearchForm: FormGroup;
-  searchResults$!: Observable<any[]>;
+  searchResults$!: Observable<any[]>;  // Use non-null assertion operator
 
   constructor(private fb: FormBuilder, private plantService: PlantService) {
     this.plantSearchForm = this.fb.group({
@@ -27,8 +27,8 @@ export class PlantSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchResults$ = this.plantSearchForm.get('query')!.valueChanges.pipe(
-      tap((query: string) => console.log('Search query:', query)),
-      switchMap((query: string) => this.plantService.searchPlants(query))
+      tap((query: string) => console.log('Search query:', query)), // Explicitly type query
+      switchMap((query: string) => this.plantService.searchPlants(query)) // Explicitly type query
     );
   }
 
