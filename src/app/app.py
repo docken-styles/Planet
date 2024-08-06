@@ -21,7 +21,8 @@ load_dotenv()
 
 # Flask setup
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})
+CORS(app)
+#CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 app.config.update(
@@ -196,23 +197,24 @@ def get_plants():
         logging.info(f"Connecting to database with user mdocken")
 
         # Use the password in the connection string
-        conn = psycopg2.connect(dbname="planet", user="mdocken", password="tTTFJg3Pla", host="localhost")
+        conn = psycopg2.connect(dbname="planet", user="mdocken", password="tTTFJg3Pla",host="localhost")
         cur = conn.cursor()
 
         query = request.args.get('query', '').lower()
         logging.info(f"Search query received: {query}")
 
         # Execute the SQL query with the search filter
-        cur.execute("SELECT * FROM vegetable_maturity WHERE LOWER(vegetable) LIKE %s;", (f"%{query}%",))
+        cur.execute("SELECT id, vegetable, days_to_maturity, transplant_weeks FROM vegetable_maturity WHERE LOWER(vegetable) LIKE %s;", (f"%{query}%",))
         rows = cur.fetchall()
         logging.info(f"Query executed successfully, rows fetched: {len(rows)}")
 
         plant_list = []
         for row in rows:
             plant = {
-                "vegetable": row[0],
-                "transplant_weeks": row[1],
-                "days_to_maturity": row[2]
+                "id": row[0],  # Include the ID in the response
+                "vegetable": row[1],
+                "days_to_maturity": row[2],
+                "transplant_weeks": row[3]
             }
             plant_list.append(plant)
 
@@ -223,6 +225,72 @@ def get_plants():
 
     except Exception as e:
         logging.error(f"Error processing plant search: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+# Add a plant to 'My Plants' list
+@app.route('/api/my-plants', methods=['POST'])
+def add_to_my_plants():
+    logging.info("Add to My Plants route hit")
+    try:
+        data = request.get_json()
+        vegetable_id = data.get('vegetable_id')
+
+        logging.info(f"Attempting to add plant with vegetable_id: {vegetable_id}")
+
+# Check if vegetable_id is None
+        if vegetable_id is None:
+            logging.error("vegetable_id is None. Cannot proceed.")
+            return jsonify({"error": "vegetable_id is missing or None"}), 400
+
+        conn = psycopg2.connect(dbname="planet", user="mdocken", password="tTTFJg3Pla", host="localhost")
+        cur = conn.cursor()
+
+        query = "INSERT INTO my_plants (vegetable_id) VALUES (%s);"
+        cur.execute(query, (vegetable_id,))
+        conn.commit()
+
+        cur.close()
+        conn.close()
+
+        logging.info("Plant successfully added to My Plants")
+
+        return jsonify({"message": "Plant added to My Plants"}), 201
+
+    except Exception as e:
+        logging.error(f"Error adding plant: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+
+# Get all plants from 'My Plants' list
+@app.route('/api/my-plants', methods=['GET'])
+def get_my_plants():
+    try:
+        conn = psycopg2.connect(dbname="planet", user="mdocken", password="tTTFJg3Pla", host="localhost")
+        cur = conn.cursor()
+
+        query = """
+        SELECT my_plants.id, vegetable_maturity.vegetable, vegetable_maturity.days_to_maturity
+        FROM my_plants
+        JOIN vegetable_maturity ON my_plants.vegetable_id = vegetable_maturity.id;
+        """
+        cur.execute(query)
+        rows = cur.fetchall()
+
+        plant_list = []
+        for row in rows:
+            plant = {
+                "id": row[0],
+                "vegetable": row[1],
+                "days_to_maturity": row[2]
+            }
+            plant_list.append(plant)
+
+        cur.close()
+        conn.close()
+
+        return jsonify(plant_list)
+
+    except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 

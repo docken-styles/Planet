@@ -7,12 +7,7 @@
 
 <mat-list>
   <mat-list-item *ngFor="let plant of searchResults$ | async" (click)="selectPlant(plant)">
-    {{ plant.vegetable }} ({{ plant.days_to_maturity }} days)
+    {{ plant.common_name }}
   </mat-list-item>
 </mat-list>
 
-<!-- Display the selected plants -->
-<h3>My Plants</h3>
-<ul>
-  <li *ngFor="let plant of myPlants">{{ plant.vegetable }} ({{ plant.days_to_maturity }} days)</li>
-</ul>
