@@ -293,6 +293,28 @@ def get_my_plants():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/plants', methods=['POST'])
+def add_plant():
+    try:
+        data = request.get_json()
+        vegetable = data.get('vegetable')
+        days_to_maturity = data.get('days_to_maturity')
+        transplant_weeks = data.get('transplant_weeks')
+
+        conn = psycopg2.connect(dbname="planet", user="mdocken", password="tTTFJg3Pla", host="localhost")
+        cur = conn.cursor()
+
+        query = "INSERT INTO vegetable_maturity (vegetable, days_to_maturity, transplant_weeks) VALUES (%s, %s, %s);"
+        cur.execute(query, (vegetable, days_to_maturity, transplant_weeks))
+        conn.commit()
+
+        cur.close()
+        conn.close()
+
+        return jsonify({"message": "Plant added successfully"}), 201
+    except Exception as e:
+        logging.error(f"Error adding plant: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 # Celery tasks
 @celery.task(name='app.schedule_notification')

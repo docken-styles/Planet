@@ -1,0 +1,18 @@
+<form [formGroup]="plantAddForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Vegetable</mat-label>
+    <input matInput formControlName="vegetable" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Transplant Weeks</mat-label>
+    <input matInput formControlName="transplant_weeks" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Days to Maturity</mat-label>
+    <input matInput formControlName="days_to_maturity" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add Plant</button>
+</form>

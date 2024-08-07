@@ -25,5 +25,15 @@ export class PlantService {
       })
     );
   }
+
+  // New method for adding a new plant
+  addPlant(plantData: { vegetable: string, transplant_weeks: string, days_to_maturity: string }): Observable<any> {
+    return this.http.post<any>(this.apiUrl, plantData).pipe(
+      catchError(error => {
+        console.error('Error adding plant:', error);
+        return throwError(error);
+      })
+    );
+  }
 }
 

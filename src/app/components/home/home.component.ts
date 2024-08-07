@@ -15,6 +15,7 @@ import { TableComponent } from '../table/table.component';
 import { signIn, signOut } from "@junobuild/core";
 import { NotificationService } from '../../services/notification.service';
 import { PlantSearchComponent } from '../plant-search/plant-search.component';
+import { PlantAddComponent } from '../add-plant/add-plant.component';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,8 @@ import { PlantSearchComponent } from '../plant-search/plant-search.component';
     HttpClientModule,
     ModalComponent,
     TableComponent,
-    PlantSearchComponent // Add PlantSearchComponent here
+    PlantSearchComponent,
+    PlantAddComponent 
   ],
 })
 export class HomeComponent implements OnInit {

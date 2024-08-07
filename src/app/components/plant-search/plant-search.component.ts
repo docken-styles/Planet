@@ -35,7 +35,10 @@ export class PlantSearchComponent implements OnInit {
         tap(data => console.log('Search Results:', data)) // Add this line to log search results
       ))
     );
+     // Fetch the list of "My Plants" from the backend
+    this.fetchMyPlants();
   }
+
 
   selectPlant(plant: any): void {
     console.log('Selected plant object:', plant); // This will log the entire plant object
@@ -66,6 +69,18 @@ export class PlantSearchComponent implements OnInit {
       complete: () => {
         console.log('Request complete');
       }
+    });
+  }
+  
+  fetchMyPlants(): void {
+    this.http.get('http://localhost:5000/api/my-plants').subscribe({
+        next: (response: any) => {
+            this.myPlants = response;  // Assuming the response is an array
+            console.log('My Plants:', this.myPlants);
+        },
+        error: (error) => {
+            console.error('Error fetching My Plants:', error);
+        }
     });
   }
 }
