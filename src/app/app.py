@@ -69,6 +69,15 @@ class Notification(db.Model):
     def __repr__(self):
         return f'<Notification {self.title}>'
 
+class VegetableMaturity(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    vegetable = db.Column(db.String(50), nullable=False)
+    days_to_maturity = db.Column(db.Integer, nullable=False)
+    transplant_weeks = db.Column(db.Integer, nullable=True)
+
+    def __repr__(self):
+        return f'<VegetableMaturity {self.vegetable}>'
+
 # Routes
 @app.route('/api/notifications', methods=['POST'])
 def create_notification():
@@ -113,6 +122,13 @@ def create_notification():
     except Exception as e:
         logging.error(f"Error creating notification: {str(e)}")
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/list_plants/<int:id>', methods=['DELETE'])
+def delete_list_plants_entry(id):
+    entry = ListPlants.query.get_or_404(id)
+    db.session.delete(entry)
+    db.session.commit()
+    return jsonify({'message': 'Entry deleted'}), 200
 
 @app.route('/api/notifications', methods=['GET'])
 def get_notifications():
@@ -188,6 +204,20 @@ def oauth2callback():
 def index():
     return jsonify({'message': 'Welcome to the Flask app with Celery and Google Calendar integration!'})
 
+@app.route('/api/vegetable_maturity/<int:id>', methods=['DELETE'])
+def delete_vegetable_maturity_entry(id):
+    try:
+        entry = VegetableMaturity.query.get(id)
+        if entry is None:
+            return jsonify({'error': 'Entry not found'}), 404
+        
+        db.session.delete(entry)
+        db.session.commit()
+        return jsonify({'message': 'Entry deleted successfully'}), 200
+
+    except Exception as e:
+        logging.error(f"Error deleting vegetable maturity entry: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/plants', methods=['GET'])
 def get_plants():

@@ -22,11 +22,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { routes } from './routes';
+import { ListAllPlantsComponent } from './components/list-all-plants/list-all-plants.component';
+import { ListPlantListComponent } from './components/list-plant-list/list-plant-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ListAllPlantsComponent,
+    ListPlantListComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
