@@ -1,0 +1,8 @@
+<h2>My Plants</h2>
+<ul>
+  <li *ngFor="let plant of myPlants">
+    {{ plant.vegetable }} - {{ plant.days_to_maturity }} days to maturity
+    <button (click)="deletePlant(plant)">Delete</button>
+  </li>
+</ul>
+

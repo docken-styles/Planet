@@ -17,6 +17,7 @@ import { NotificationService } from '../../services/notification.service';
 import { PlantSearchComponent } from '../plant-search/plant-search.component';
 import { PlantAddComponent } from '../add-plant/add-plant.component';
 import { ListPlantsListComponent } from '../list-plants-list/list-plants-list.component';
+import { DeleteMyPlantComponent } from '../delete-my-plant/delete-my-plant.component';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +39,8 @@ import { ListPlantsListComponent } from '../list-plants-list/list-plants-list.co
     TableComponent,
     PlantSearchComponent,
     PlantAddComponent, 
-    ListPlantsListComponent
+    ListPlantsListComponent,
+    DeleteMyPlantComponent
   ],
 })
 export class HomeComponent implements OnInit {

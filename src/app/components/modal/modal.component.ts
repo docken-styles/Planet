@@ -31,7 +31,7 @@ export class ModalComponent {
   private snackBar = inject(MatSnackBar);
 
   diaryForm = this.formBuilder.group({
-    entry: '',
+    plantId: '',
   });
 
   private file: File | undefined;
@@ -68,10 +68,10 @@ export class ModalComponent {
     let url;
 
     if (this.file !== undefined) {
-      const filename = `${user.key}-${this.file.name}`;
+     const filename = `${user.key}-${this.file.name}`;
 
       // TODO: STEP_7_UPLOAD_FILE
-      // const downloadUrl = undefined;
+    //   const downloadUrl = undefined;
       const { downloadUrl } = await uploadFile({
         collection: 'images',
         data: this.file,
@@ -85,11 +85,11 @@ export class ModalComponent {
 
     // TODO: STEP_5_SET_DOC
     await setDoc({
-      collection: 'notes',
+      collection: 'Plants',
       doc: {
         key,
         data: {
-          text: this.diaryForm.value.entry,
+          text: this.diaryForm.value.plantId,
         },
       },
     });

@@ -3,84 +3,84 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
 import { PlantService } from '../../services/plant.service';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { MyPlantsService } from '../../services/my-plants.service'; // Import MyPlantsService
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-plant-search',
   templateUrl: './plant-search.component.html',
   styleUrls: ['./plant-search.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatListModule]
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatListModule],
 })
 export class PlantSearchComponent implements OnInit {
   plantSearchForm: FormGroup;
   searchResults$!: Observable<any[]>;
-  myPlants: any[] = [];  // Define the myPlants property to store selected plants
+  myPlants: any[] = []; // Define the myPlants property to store selected plants
 
-  constructor(private fb: FormBuilder, private plantService: PlantService, private http: HttpClient) { // Inject HttpClient
+  constructor(
+    private fb: FormBuilder,
+    private plantService: PlantService,
+    private myPlantsService: MyPlantsService // Inject MyPlantsService
+  ) {
     this.plantSearchForm = this.fb.group({
-      query: ['']
+      query: [''],
     });
   }
 
   ngOnInit(): void {
     this.searchResults$ = this.plantSearchForm.get('query')!.valueChanges.pipe(
       tap((query: string) => console.log('Search query:', query)),
-      switchMap((query: string) => this.plantService.searchPlants(query).pipe(
-        tap(data => console.log('Search Results:', data)) // Add this line to log search results
-      ))
+      switchMap((query: string) =>
+        this.plantService.searchPlants(query).pipe(
+          tap((data) => console.log('Search Results:', data)) // Log search results
+        )
+      )
     );
-     // Fetch the list of "My Plants" from the backend
+
+    // Fetch the list of "My Plants" from Juno
     this.fetchMyPlants();
   }
 
-
   selectPlant(plant: any): void {
-    console.log('Selected plant object:', plant); // This will log the entire plant object
-    console.log('Selected plant ID:', plant.id); // This will log the plant ID if it exists
+    console.log('Selected plant object:', plant); // Log the entire plant object
+    console.log('Selected plant ID:', plant.id); // Log the plant ID if it exists
 
-    this.myPlants.push(plant);  // Add the selected plant to the myPlants array
+    this.myPlants.push(plant); // Add the selected plant to the myPlants array
 
     if (plant && plant.id) {
-        this.addToMyPlants(plant.id);  // Trigger the method to add the plant to the database
+      this.addToMyPlants(plant); // Trigger the method to add the plant to Juno
     } else {
-        console.error('No vegetable_id found for selected plant');
+      console.error('No vegetable_id found for selected plant');
     }
-}
+  }
 
-
-  addToMyPlants(vegetable_id: number): void {
-    const payload = { vegetable_id: vegetable_id };
-    console.log('Payload:', payload);  // Log the payload to check if it's correct
-
-    this.http.post('http://localhost:5000/api/my-plants', payload)
-    .subscribe({
+  addToMyPlants(plant: any): void {
+    this.myPlantsService.addPlantToMyList(plant).subscribe({
       next: (response) => {
-        console.log('Response from server:', response);
+        console.log('Plant added to Juno:', response);
       },
       error: (error) => {
-        console.error('Error adding plant:', error);
+        console.error('Error adding plant to Juno:', error);
       },
       complete: () => {
-        console.log('Request complete');
-      }
+        console.log('Request to add plant to Juno complete');
+      },
     });
   }
-  
+
   fetchMyPlants(): void {
-    this.http.get('http://localhost:5000/api/my-plants').subscribe({
-        next: (response: any) => {
-            this.myPlants = response;  // Assuming the response is an array
-            console.log('My Plants:', this.myPlants);
-        },
-        error: (error) => {
-            console.error('Error fetching My Plants:', error);
-        }
+    this.myPlantsService.getMyPlantsList().subscribe({
+      next: (response: any) => {
+        this.myPlants = response; // Assuming the response is an array
+        console.log('My Plants:', this.myPlants);
+      },
+      error: (error) => {
+        console.error('Error fetching My Plants from Juno:', error);
+      },
     });
   }
 }

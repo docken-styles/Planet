@@ -24,6 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { routes } from './routes';
 import { ListAllPlantsComponent } from './components/list-all-plants/list-all-plants.component';
 import { ListPlantListComponent } from './components/list-plant-list/list-plant-list.component';
+import { DeleteMyPlantComponent } from './components/delete-my-plant/delete-my-plant.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ListPlantListComponent } from './components/list-plant-list/list-plant-
     HomeComponent,
     ListAllPlantsComponent,
     ListPlantListComponent,
+    DeleteMyPlantComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

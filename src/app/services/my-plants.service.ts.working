@@ -1,0 +1,99 @@
+import { Injectable } from '@angular/core';
+import { setDoc, listDocs, Doc } from '@junobuild/core';
+import { deleteDoc } from '@junobuild/core';
+import { Observable, from } from 'rxjs';
+import { nanoid } from 'nanoid';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MyPlantsService {
+  constructor() {}
+
+
+  // Method to add a plant to the Juno "Plants" collection
+  addPlantToMyList(plantData: {
+    id: number;
+    vegetable: string;
+  }): Observable<any> {
+    return from(this.addPlantToJuno(plantData));
+  }
+
+  private async addPlantToJuno(plantData: {
+    id: number;
+    vegetable: string;
+  }): Promise<any> {
+    try {
+      const key = nanoid();
+
+      await setDoc({
+        collection: 'Plants', // Juno collection name
+        doc: {
+          key,
+          data: {
+           id: plantData.id,       // `id` should match your Juno collection's field
+           vegetable: plantData.vegetable,
+          }
+        },
+      });
+
+      return { success: true };
+    } catch (error) {
+      console.error('Error adding plant to Juno:', error);
+      throw error;
+    }
+  }
+
+  deletePlantFromMyList(plantKey: string): Observable<any> {
+    return from(this.deletePlantFromJuno(plantKey));
+  }
+
+  private async deletePlantFromJuno(plantKey: string): Promise<any> {
+    try {
+      const doc: Doc<unknown> = {
+        key: plantKey,
+        data: {}, // An empty object since we're just deleting by key
+      };
+
+      await delDoc({
+        collection: 'Plants', // Specify the collection name
+        doc: doc, // Pass the doc object
+      });
+
+      return { success: true };
+    } catch (error) {
+      console.error('Error deleting plant from Juno:', error);
+     
+      const err = error as Error;
+
+        // Handle specific errors based on rejection codes or messages
+        if (err.message.includes('error_no_version_provided')) {
+            alert('Deletion failed due to a versioning issue. Please try again or contact support.');
+        } else {
+            alert('An unexpected error occurred while trying to delete the plant.');
+        }
+
+      throw error;
+    }
+  }
+  //
+  // Method to retrieve plants from Juno "Plants" collection
+  getMyPlantsList(): Observable<any[]> {
+    return from(this.getPlantsFromJuno());
+  }
+
+  private async getPlantsFromJuno(): Promise<any[]> {
+    try {
+      const { items } = await listDocs<any>({
+        collection: 'Plants',
+      });
+
+      return items.map((doc) => doc.data);
+    } catch (error) {
+      console.error('Error retrieving plants from Juno:', error);
+      throw error;
+    }
+  }
+}
+
